@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GradeBook.GradeBooks
@@ -15,51 +16,31 @@ namespace GradeBook.GradeBooks
         {
             char grade = new char();
             int position = new int();
-            List<double> averageGrades = new List<double>();
+            
 
             var count = Students.Count;
-            var bracketsize = count / 5;
+            var bracketsize = (int)Math.Ceiling(count * 0.2);
+            var averagegrades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
             if (count < 5)
             {
                 throw new InvalidOperationException("You cannot grade with less than 5 students.");        
             }
 
-            foreach (var student in Students)
+            if (averagegrades[bracketsize-1] <= averageGrade)
             {
-                averageGrades.Add(student.AverageGrade);
-
-
+                return 'A';
             }
-
-            averageGrades.Sort();
-
-            for (int i = 0; i <= averageGrades.Count; i++)
+            if (averagegrades[(bracketsize*2) - 1] <= averageGrade)
             {
-                if (averageGrade < averageGrades[i])
-                {
-                    continue;
-                }
-                else
-                {
-                    position = i; 
-                }
+                return 'A';
             }
-
-            if(position <= bracketsize)
+            if (averagegrades[(bracketsize*3) - 1] <= averageGrade)
             {
-                grade =  'A';
+                return 'A';
             }
-            if (position <= bracketsize*2)
+            if (averagegrades[(bracketsize*4) - 1] <= averageGrade)
             {
-                grade = 'B';
-            }
-            if (position <= bracketsize*3)
-            {
-                grade = 'C';
-            }
-            if (position <= bracketsize*4)
-            {
-                grade = 'D';
+                return 'A';
             }
 
 
