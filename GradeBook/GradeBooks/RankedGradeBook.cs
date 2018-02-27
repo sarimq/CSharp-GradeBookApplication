@@ -21,6 +21,7 @@ namespace GradeBook.GradeBooks
 
                 
             }
+            grade = 'F';  
             return grade;
         }
     }
