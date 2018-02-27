@@ -32,15 +32,15 @@ namespace GradeBook.GradeBooks
             }
             if (averagegrades[(bracketsize*2) - 1] <= averageGrade)
             {
-                return 'A';
+                return 'B';
             }
             if (averagegrades[(bracketsize*3) - 1] <= averageGrade)
             {
-                return 'A';
+                return 'C';
             }
             if (averagegrades[(bracketsize*4) - 1] <= averageGrade)
             {
-                return 'A';
+                return 'D';
             }
 
 
